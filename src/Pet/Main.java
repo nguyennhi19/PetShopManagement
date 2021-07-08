@@ -9,17 +9,23 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        PetService petService = new PetService();
-        try {
-            petService.loadData();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        PetService petService = new PetService();
+//        try {
+//            petService.loadData();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         int choose;
         do {
             creatMenu();
-            choose = scanner.nextInt();
+            Scanner sc = new Scanner(System.in);
+            do {
+                while (!sc.hasNextInt()){
+                    System.out.println("Hãy nhập lại số pet");
+                    sc.next();
+                }
+                choose = sc.nextInt();}
+            while (choose<0);
             switch (choose){
                 case 1:
                     printPet();
@@ -84,6 +90,7 @@ public class Main {
         System.out.println("6. Đọc từ file");
         System.out.println("7. Ghi vào file");
         System.out.println("8. Thoát");
+        System.out.println("Chọn chức năng");
         System.out.println("------------------------------------------");
     }
 
@@ -100,9 +107,17 @@ public class Main {
         System.out.println("Nhập tên thú cưng: ");
         String name = sc.nextLine();
 
-        System.out.println("Nhập tuổi thú cưng: ");
-        int age = sc.nextInt();
-        String a = sc.nextLine();
+
+        int age;
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.println("Nhập tuổi Pet");
+            while (!in.hasNextInt()){
+                System.out.println("Hãy nhập lại tuổi Pet");
+                in.next();
+            }
+            age = in.nextInt();}
+        while (age<0);
 
         System.out.println("Nhập giới tính thú cưng: ");
         String gender = sc.nextLine();
@@ -113,18 +128,35 @@ public class Main {
             dateOfBirth = sc.nextLine();
         }while (checkInputDateOfBirth(dateOfBirth) == false);
 
-        System.out.println("Nhập màu lông của thú cưng: ");
+        System.out.println("Nhập màu lông của Pet: ");
         String color = sc.nextLine();
 
-        System.out.println("Giống Mèo của thú cưng: ");
+        System.out.println("Giống Mèo của Pet: ");
         String species = sc.nextLine();
 
-        System.out.println("Gía của thú cưng:");
-        int price = sc.nextInt();
 
-        System.out.println("Nhập số lượng: ");
-        int  quantity = sc.nextInt();
-        String abc = sc.nextLine();
+        int price;
+        Scanner inp = new Scanner(System.in);
+        do {
+            System.out.println("Nhập giá Pet");
+            while (!inp.hasNextInt()){
+                System.out.println("Hãy nhập lại giá Pet");
+                inp.next();
+            }
+            price = inp.nextInt();}
+        while (price<0);
+
+        int quantity;
+        Scanner input = new Scanner(System.in);
+
+        do {
+            System.out.println("Nhập số lượng Pet");
+            while (!input.hasNextInt()){
+                System.out.println("Hãy nhập lại số lượng Pet");
+                input.next();
+            }
+            quantity = input.nextInt();}
+        while (quantity<0);
 
         System.out.println("Nhập trạng thái: ");
         String  status = sc.nextLine();
@@ -134,9 +166,10 @@ public class Main {
         Pet pet1 = petService.find(name);
         if (pet.equals(pet1)){
             System.out.println("tên Pet đã tồn tại:");
-            System.out.println(pet1.toString());
+
         }else {
             petService.add(pet);
+//            petService.updateFile();
             System.out.println("Bạn đã thêm " + pet.getName() + " vào danh sách thành công!");
         }
     }
@@ -144,7 +177,7 @@ public class Main {
     public static void find(){
         Scanner scanner = new Scanner(System.in);
         String name;
-        System.out.println("Nhập tên Pet cần tìm kiếm(yêu cầu số điện thoại hợp lệ):");
+        System.out.println("Nhập tên Pet cần tìm kiếm:");
         name = scanner.nextLine();
 
         PetService petService = new PetService();
@@ -160,7 +193,7 @@ public class Main {
         PetService petService = new PetService();
         Scanner scanner = new Scanner(System.in);
         String name;
-        System.out.println("Nhập tên Pet cần xóa(yêu cầu số điện thoại hợp lệ):");
+        System.out.println("Nhập tên Pet cần xóa:");
         name = scanner.nextLine();
 
         Pet pet = petService.find(name);
@@ -178,22 +211,28 @@ public class Main {
         PetService petService = new PetService();
 
         String name;
-        System.out.println("Nhập tên Pet(yêu cầu số điện thoại hợp lệ):");
+        System.out.println("Nhập tên Pet:");
         name = sc.nextLine();
 
         Pet pet = petService.find(name);
 
-        if (name == null){
+        if (pet == null){
             System.out.println("Không tìm được tên Pet");
         }else {
             System.out.println("Nhập thông tin mới:");
 
-            System.out.println("Nhập tuổi thú cưng: ");
-            int age = sc.nextInt();
-            pet.setAge(age);
-            String a = sc.nextLine();
+            int age;
+            Scanner in = new Scanner(System.in);
+            do {
+                System.out.println("Nhập tuổi Pet:");
+                while (!in.hasNextInt()){
+                    System.out.println("Hãy nhập lại tuổi Pet:");
+                    in.next();
+                }
+                age = in.nextInt();}
+            while (age<0);
 
-            System.out.println("Nhập giới tính thú cưng: ");
+            System.out.println("Nhập giới tính Pet: ");
             String gender = sc.nextLine();
             pet.setGender(gender);
 
@@ -204,15 +243,15 @@ public class Main {
             }while (checkInputDateOfBirth(dateOfBirth) == false);
             pet.setDateOfBirth(dateOfBirth);
 
-            System.out.println("Nhập màu lông của thú cưng: ");
+            System.out.println("Nhập màu lông của Pet: ");
             String color = sc.nextLine();
             pet.setColor(color);
 
-            System.out.println("Giống Mèo của thú cưng: ");
+            System.out.println("Giống Mèo của Pet: ");
             String species = sc.nextLine();
             pet.setSpecies(species);
 
-            System.out.println("Gía của thú cưng:");
+            System.out.println("Gía của Pet:");
             int price = sc.nextInt();
             pet.setPrice(price);
 
@@ -244,8 +283,14 @@ public class Main {
     }
 
     public static void readToFile() throws Exception{
+        System.out.println("Đang tiến hành đọc từ file...");
         PetService petService = new PetService();
-        petService.print();
+        try {
+            petService.loadData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Đọc từ file thành công");
     }
 
     public static void writeToFile() throws Exception{

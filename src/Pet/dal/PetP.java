@@ -18,7 +18,7 @@ public class PetP {
         if (!file.exists()){
             file.createNewFile();
         }
-        FileOutputStream fos = new FileOutputStream("pet.csv");
+        FileOutputStream fos = new FileOutputStream("pet.csv",true);
         BufferedOutputStream bos = new BufferedOutputStream(fos);
         for (Map.Entry<String, Pet> entry : petList.entrySet()){
             bos.write(entry.getValue().toStringCSV().getBytes());
@@ -33,6 +33,7 @@ public class PetP {
     }
 
     public void readFile() throws Exception{
+
         File file = new File("pet.csv");
         if (!file.exists()){
             return;
@@ -44,9 +45,10 @@ public class PetP {
                 String[] arr = line.split(",");
                 Pet pet = new Pet(arr[0],Integer.parseInt(arr[1]),arr[2],
                         arr[3],arr[4],arr[5],Integer.parseInt(arr[6]),Integer.parseInt(arr[7]),arr[8]);
-
                 add(pet);
             }
+            bufferedReader.close();
+            fileReader.close();
         }
     }
 

@@ -116,22 +116,22 @@ public class Pet {
 
     @Override
     public String toString() {
-        return  "| Tên : " + String.format("%-5s|",name) + " Tuổi: " + String.format("%-1s |", age) +
-                " Giới tính: " + String.format("%-4s|",gender)  + " Ngày sinh: " + String.format("%-6s|",dateOfBirth)
-                + " Màu lông: " + String.format("%-6s |",color) + " Giống loài: " + String.format("%-6s |",species) +
-                " Gía: " + String.format("%-6s |",String.format("%,d",price)) + " Số lượng: " + String.format("%-1s |",
+        return  "| Tên : " + String.format("%-10s|",name) + " Tuổi: " + String.format("%-4s |", age) +
+                " Giới tính: " + String.format("%-6s|",gender)  + " Ngày sinh: " + String.format("%-6s|",dateOfBirth)
+                + " Màu lông: " + String.format("%-10s |",color) + " Giống loài: " + String.format("%-14s |",species) +
+                " Gía: " + String.format("%-6s |",String.format("%,d",price)) + " Số lượng: " + String.format("%-4s |",
                 quantity) + " Trạng thái: " + String.format("%-6s |",status);
     }
 
     public String toStringCSV(){
-        return name+","+ age +","+gender+","+dateOfBirth+","+color+","+species+","+String.format("%,d",price)+","+quantity+","+status+"\n";
+        return name+","+ age +","+gender+","+dateOfBirth+","+color+","+species+","+price+","+quantity+","+status+"\n";
     }
 
     public String toStringInfo() {
-        return  "| Tên : " + String.format("%-5s|",name) + " Tuổi: " + String.format("%-1s |", age) +
-                " Giới tính: " + String.format("%-4s|",gender)  + " Ngày sinh: " + String.format("%-6s|",dateOfBirth)
-                + " Màu lông: " + String.format("%-7s |",color) + " Giống loài: " + String.format("%-8s |",species) +
-                " Gía: " + String.format("%-6s |",String.format("%,d",price)) + " Số lượng: " + String.format("%-1s |",
-                quantity) + " Trạng thái: " + String.format("%-8s |",status);
+        return   "| Tên : " + String.format("%-10s|",name) + " Tuổi: " + String.format("%-4s |", age) +
+                " Giới tính: " + String.format("%-6s|",gender)  + " Ngày sinh: " + String.format("%-6s|",dateOfBirth)
+                + " Màu lông: " + String.format("%-10s |",color) + " Giống loài: " + String.format("%-14s |",species) +
+                " Gía: " + String.format("%-6s |",String.format("%,d",price)) + " Số lượng: " + String.format("%-4s |",
+                quantity) + " Trạng thái: " + String.format("%-6s |",status);
     }
 }
